@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<title>Mega Sena</title>
+</h:head>
+<h:body>
+	<p:panel>
+		<h:form id="formulario">
+			<p:growl id="messages" showDetail="true" closable="true">
+				<p:autoUpdate />
+			</p:growl>
+
+			<p:panel header="Gerar Jogo">
+				<p:commandButton value="Gerar" action="#{jogoBean.gerarSalvar}"
+					update="formulario" />
+			</p:panel>
+
+
+			<p:dataTable value="#{jogoBean.jogos}" var="j"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+				paginator="true" rows="12" styleClass="p-mt-2">
+
+				<p:column headerText="Concurso">
+					<p:outputLabel value="#{j.descricao}" />
+				</p:column>
+
+				<p:column headerText="Numero 1">
+					<p:outputLabel value="#{j.numero1}" />
+				</p:column>
+
+				<p:column headerText="Numero 2">
+					<p:outputLabel value="#{j.numero2}" />
+				</p:column>
+
+				<p:column headerText="Numero 3">
+					<p:outputLabel value="#{j.numero3}" />
+				</p:column>
+
+				<p:column headerText="Numero 4">
+					<p:outputLabel value="#{j.numero4}" />
+				</p:column>
+
+				<p:column headerText="Numero 5">
+					<p:outputLabel value="#{j.numero5}" />
+				</p:column>
+
+				<p:column headerText="Numero 6">
+					<p:outputLabel value="#{j.numero6}" />
+				</p:column>
+
+				<p:column>
+					<p:commandButton value="Excluir" action="#{jogoBean.excluir}"
+						update="messages" ajax="false">
+						<f:setPropertyActionListener value="#{j}"
+							target="#{jogoBean.jogo}" />
+					</p:commandButton>
+				</p:column>
+
+			</p:dataTable>
+		</h:form>
+	</p:panel>
+</h:body>
+
+</html>
